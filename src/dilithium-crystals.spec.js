@@ -1,10 +1,12 @@
 const jwk = require('./JWK');
 const jws = require('./JWS');
 const message = `It’s a dangerous business, Frodo, going out your door.`;
-const msg = new TextEncoder().encode(message);
 
 it('dilithium-crystals', async () => {
-  const {publicKey, privateKey} = await jwk.generate();
+  const {publicKey, privateKey} = await jwk.generate({
+    kty: jwk.dilithium_kty,
+    alg: jwk.dilithium_alg,
+  });
   const {publicKeyJwk, privateKeyJwk} = await jwk.exportKeyPairJwk({
     publicKey,
     privateKey,

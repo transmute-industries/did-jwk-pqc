@@ -1,8 +1,19 @@
 const base64url = require('base64url');
 const dilithium = require('dilithium-crystals');
 
-const generate = async () => {
-  const {publicKey, privateKey} = await dilithium.keyPair();
+const dilithium_kty = 'LWE';
+const dilithium_alg = 'CRYDI5';
+
+const getSuite = ({kty, alg}) => {
+  const keyMapper = {
+    [`${dilithium_kty} ${dilithium_alg}`]: dilithium,
+  };
+  return keyMapper[`${kty} ${alg}`];
+};
+
+const generate = async ({kty, alg}) => {
+  const suite = getSuite({kty, alg});
+  const {publicKey, privateKey} = await suite.keyPair();
   return {publicKey, privateKey};
 };
 
@@ -16,8 +27,8 @@ const importJwk = (jwk) => {
 
 const exportPublicKeyJwk = ({publicKey}) => {
   const publicKeyJwk = {
-    kty: 'LWE',
-    alg: 'CRYDI5',
+    kty: dilithium_kty,
+    alg: dilithium_alg,
     x: base64url.encode(publicKey),
   };
   return publicKeyJwk;
@@ -42,6 +53,8 @@ const exportKeyPairJwk = ({publicKey, privateKey}) => {
 };
 
 module.exports = {
+  dilithium_kty,
+  dilithium_alg,
   generate,
   importJwk,
   exportPublicKeyJwk,
