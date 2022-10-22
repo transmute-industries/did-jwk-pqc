@@ -20,17 +20,18 @@ See [DRAFT IETF COSE Post Quantum Signatures](https://datatracker.ietf.org/doc/d
 
 ## Use
 
-```
-npm i -g @transmute/did-jwk-pqc@latest
-```
-
 ### CLI
 
 ```
+npm i -g @transmute/did-jwk-pqc@latest
 did-jwk-pqc generate-key CRYDI5
 ```
 
 ### Library
+
+```
+npm i @transmute/did-jwk-pqc@latest --save
+```
 
 ```js
 const { DID, JWK, JWS } = require('@transmute/did-jwk-pqc')
