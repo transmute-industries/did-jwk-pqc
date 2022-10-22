@@ -1,6 +1,7 @@
 const jose = require('jose');
 
 const JWK = require('../JWK');
+const JWS = require('../JWS');
 
 const methodPrefix = 'did:jwk';
 
@@ -101,6 +102,15 @@ const toDidDocument = (jwk) => {
   return didDocument;
 };
 
+const signAsDid = (payload, privateKeyJwk, header = {}) => {
+  const did = toDid(privateKeyJwk);
+  return JWS.sign({
+    header: {iss: did, kid: '#0', ...header},
+    payload,
+    privateKeyJwk,
+  });
+};
+
 const operations = {
   create: (jwk) => {
     return toDid(jwk);
@@ -109,4 +119,4 @@ const operations = {
   dereference,
 };
 
-module.exports = {operations, toDid};
+module.exports = {operations, toDid, signAsDid};

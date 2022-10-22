@@ -58,16 +58,12 @@ Dereference a DID.
 npm run did-jwk-pqc dereference `cat  ./cli-examples/CRYDI5.id.json | jq '.id'`#0 --silent > ./cli-examples/CRYDI5.dereference.json
 ```
 
-<!--
-
-
-
 ### Sign
 
 Sign as a DID
 
 ```
-npm run did-jwk sign ./src/cli-examples/key.json ./src/cli-examples/message.json --silent > ./src/cli-examples/message.signed.json
+npm run did-jwk-pqc sign ./cli-examples/CRYDI5.jwk.json ./cli-examples/message.json --silent > ./cli-examples/CRYDI5.message.signed.json
 ```
 
 ### Verify
@@ -75,8 +71,15 @@ npm run did-jwk sign ./src/cli-examples/key.json ./src/cli-examples/message.json
 Verify with a DID
 
 ```
-npm run did-jwk verify ./src/cli-examples/message.signed.json --silent > ./src/cli-examples/message.verified.json
+npm run did-jwk-pqc verify ./cli-examples/CRYDI5.message.signed.json --silent > ./cli-examples/CRYDI5.message.verified.json
 ```
+
+<!--
+
+
+
+
+
 
 Verify and decode
 

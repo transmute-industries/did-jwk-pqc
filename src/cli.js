@@ -76,18 +76,18 @@ yargs(hideBin(process.argv))
           console.log(JSON.stringify(resolution, null, 2));
         },
     )
-// .command(
-//     'sign <jwk> <msg>',
-//     'sign a message as a decentralized identifier',
-//     () => {},
-//     async (argv) => {
-//       const jwk = readJsonFromPath(argv, 'jwk');
-//       const msg = readJsonFromPath(argv, 'msg');
-//       const message = new TextEncoder().encode(JSON.stringify(msg));
-//       const jws = await method.signAsDid(message, jwk);
-//       console.log(JSON.stringify({jws}, null, 2));
-//     },
-// )
+    .command(
+        'sign <jwk> <msg>',
+        'sign a message as a decentralized identifier',
+        () => {},
+        async (argv) => {
+          const jwk = readJsonFromPath(argv, 'jwk');
+          const msg = readJsonFromPath(argv, 'msg');
+          const message = new TextEncoder().encode(JSON.stringify(msg));
+          const jws = await DID.signAsDid(message, jwk);
+          console.log(JSON.stringify({jws}, null, 2));
+        },
+    )
 // .command(
 //     'verify <msg>',
 //     'verify a message signed by a decentralized identifier',
