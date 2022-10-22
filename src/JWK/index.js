@@ -1,5 +1,3 @@
-const jose = require('jose');
-
 const base64url = require('base64url');
 const dilithium = require('dilithium-crystals');
 const falcon = require('falcon-crypto');
@@ -106,8 +104,13 @@ const exportKeyPairJwk = async ({publicKey, privateKey, alg}) => {
 };
 
 module.exports = {
+  algs: [dilithium_alg, falcon_alg, sphincs_alg],
   dilithium_kty,
   dilithium_alg,
+  falcon_kty,
+  falcon_alg,
+  sphincs_kty,
+  sphincs_alg,
   generateKeyPair,
   getSuite,
   generate,
