@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const yargs = require('yargs');
 const {hideBin} = require('yargs/helpers');
+
 const {DID, JWK} = require('./index.js');
 
 const readJsonFromPath = (argv, argName) => {
@@ -100,6 +101,30 @@ yargs(hideBin(process.argv))
           } else {
             console.log(JSON.stringify({verified}, null, 2));
           }
+        },
+    )
+    .command(
+        'cute <jwk>',
+        'create a cute decentralized identifier',
+        () => {},
+        async (argv) => {
+          let jwk;
+          if (argv.jwk) {
+            try {
+              const file = fs
+                  .readFileSync(path.resolve(process.cwd(), argv.jwk))
+                  .toString();
+
+              jwk = JSON.parse(file);
+            } catch (e) {
+              console.error('Cannot base jwk from: ' + argv.jwk);
+              process.exit(1);
+            }
+          }
+          const id = await DID.getEmojid(jwk);
+
+          console.log(id);
+          // console.log(JSON.stringify({id}, null, 2));
         },
     )
     .demandCommand(1)

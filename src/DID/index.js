@@ -1,5 +1,5 @@
 const jose = require('jose');
-
+const demojid = require('@or13/demojid');
 const JWK = require('../JWK');
 const JWS = require('../JWS');
 
@@ -126,4 +126,25 @@ const operations = {
   dereference,
 };
 
-module.exports = {operations, toDid, signAsDid, signAsDid, verifyFromDid};
+const getEmojid = async (jwk) => {
+  // because non of the PQC alg's are accepted yet....
+  const hackedPublicKeyJwk = {
+    ...jwk,
+    crv: 'Ed25519',
+    kty: 'OKP',
+  };
+  const kid = await jose.calculateJwkThumbprintUri(hackedPublicKeyJwk);
+  const encoded = demojid.encode(kid, {
+    contentType: 'application/did+json',
+  });
+  return encoded.split(':').pop().substring(0, 6);
+};
+
+module.exports = {
+  operations,
+  getEmojid,
+  toDid,
+  signAsDid,
+  signAsDid,
+  verifyFromDid,
+};

@@ -94,6 +94,14 @@ npm run did-jwk-pqc verify ./cli-examples/FALCON512.message.signed.json  --silen
 npm run did-jwk-pqc verify ./cli-examples/SPHINCS.message.signed.json  --silent  -- --decode
 ```
 
+### Create Cute DID
+
+Create a cute DID.
+
+```
+npm run did-jwk-pqc cute ./cli-examples/CRYDI5.jwk.json --silent
+```
+
 <!--
 
 ```bash
