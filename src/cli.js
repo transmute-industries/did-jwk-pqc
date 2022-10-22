@@ -66,16 +66,16 @@ yargs(hideBin(process.argv))
           console.log(JSON.stringify(resolution, null, 2));
         },
     )
-// .command(
-//     'dereference <didUrl>',
-//     'dereference a decentralized identifier url',
-//     () => {},
-//     async (argv) => {
-//       const {didUrl} = argv;
-//       const resolution = await method.dereference(didUrl);
-//       console.log(JSON.stringify(resolution, null, 2));
-//     },
-// )
+    .command(
+        'dereference <didUrl>',
+        'dereference a decentralized identifier url',
+        () => {},
+        async (argv) => {
+          const {didUrl} = argv;
+          const resolution = await DID.operations.dereference(didUrl);
+          console.log(JSON.stringify(resolution, null, 2));
+        },
+    )
 // .command(
 //     'sign <jwk> <msg>',
 //     'sign a message as a decentralized identifier',

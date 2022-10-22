@@ -50,18 +50,17 @@ Resolve a DID
 npm run did-jwk-pqc resolve `cat  ./cli-examples/CRYDI5.id.json | jq '.id'` --silent > ./cli-examples/CRYDI5.resolution.json
 ```
 
-<!--
-
-
-
-
 ### Dereference DID
 
 Dereference a DID.
 
 ```
-npm run did-jwk dereference `cat  ./src/cli-examples/id.json | jq '.id'`#0 --silent > ./src/cli-examples/dereference.json
+npm run did-jwk-pqc dereference `cat  ./cli-examples/CRYDI5.id.json | jq '.id'`#0 --silent > ./cli-examples/CRYDI5.dereference.json
 ```
+
+<!--
+
+
 
 ### Sign
 

@@ -25,6 +25,16 @@ const resolve = (did) => {
   return toDidDocument(jwk);
 };
 
+const dereference = (didUrl) => {
+  const [did, fragment] = didUrl.split('#');
+  const didDocument = resolve(did);
+  const [vm] = didDocument.verificationMethod;
+  if (vm.id === `#${fragment}`) {
+    return vm;
+  }
+  return null;
+};
+
 const signatureVerificationRelationships = [
   'authentication',
   'assertionMethod',
@@ -96,6 +106,7 @@ const operations = {
     return toDid(jwk);
   },
   resolve,
+  dereference,
 };
 
 module.exports = {operations, toDid};
