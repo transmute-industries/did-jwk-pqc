@@ -42,17 +42,18 @@ Create a DID.
 npm run did-jwk-pqc create ./cli-examples/CRYDI5.jwk.json --silent > ./cli-examples/CRYDI5.id.json
 ```
 
-<!--
-
-
-
 ### Resolve DID
 
 Resolve a DID
 
 ```
-npm run did-jwk resolve `cat  ./src/cli-examples/id.json | jq '.id'` --silent > ./src/cli-examples/resolution.json
+npm run did-jwk-pqc resolve `cat  ./cli-examples/CRYDI5.id.json | jq '.id'` --silent > ./cli-examples/CRYDI5.resolution.json
 ```
+
+<!--
+
+
+
 
 ### Dereference DID
 

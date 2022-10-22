@@ -56,16 +56,16 @@ yargs(hideBin(process.argv))
           console.log(JSON.stringify({id}, null, 2));
         },
     )
-// .command(
-//     'resolve <did>',
-//     'resolve a decentralized identifier',
-//     () => {},
-//     async (argv) => {
-//       const {did} = argv;
-//       const resolution = await client.operations.resolve(did);
-//       console.log(JSON.stringify(resolution, null, 2));
-//     },
-// )
+    .command(
+        'resolve <did>',
+        'resolve a decentralized identifier',
+        () => {},
+        async (argv) => {
+          const {did} = argv;
+          const resolution = await DID.operations.resolve(did);
+          console.log(JSON.stringify(resolution, null, 2));
+        },
+    )
 // .command(
 //     'dereference <didUrl>',
 //     'dereference a decentralized identifier url',
