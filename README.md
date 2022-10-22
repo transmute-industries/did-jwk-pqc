@@ -100,6 +100,7 @@ Create a cute DID.
 
 ```
 npm run did-jwk-pqc cute ./cli-examples/CRYDI5.jwk.json --silent
+# 🐍🌱🦉
 ```
 
 <!--
