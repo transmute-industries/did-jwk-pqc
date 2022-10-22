@@ -55,6 +55,7 @@ const exportKeyPairJwk = ({publicKey, privateKey}) => {
 module.exports = {
   dilithium_kty,
   dilithium_alg,
+  getSuite,
   generate,
   importJwk,
   exportPublicKeyJwk,
