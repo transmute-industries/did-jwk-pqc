@@ -29,7 +29,6 @@
   },
   "dependencies": {
     "@or13/demojid": "^0.0.1",
-    "base64url": "^3.0.1",
     "dilithium-crystals": "^1.0.3",
     "falcon-crypto": "^1.0.3",
     "jose": "^4.9.2",
