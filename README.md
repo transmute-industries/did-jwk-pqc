@@ -32,6 +32,8 @@ Create a private key
 
 ```
 npm run did-jwk-pqc generate-key CRYDI5 --silent > ./cli-examples/CRYDI5.jwk.json
+npm run did-jwk-pqc generate-key FALCON512 --silent > ./cli-examples/FALCON512.jwk.json
+npm run did-jwk-pqc generate-key SPHINCS+-SHAKE-256s-robust --silent > ./cli-examples/SPHINCS.jwk.json
 ```
 
 ### Create DID
@@ -40,6 +42,8 @@ Create a DID.
 
 ```
 npm run did-jwk-pqc create ./cli-examples/CRYDI5.jwk.json --silent > ./cli-examples/CRYDI5.id.json
+npm run did-jwk-pqc create ./cli-examples/FALCON512.jwk.json --silent > ./cli-examples/FALCON512.id.json
+npm run did-jwk-pqc create ./cli-examples/SPHINCS.jwk.json --silent > ./cli-examples/SPHINCS.id.json
 ```
 
 ### Resolve DID
@@ -48,6 +52,8 @@ Resolve a DID
 
 ```
 npm run did-jwk-pqc resolve `cat  ./cli-examples/CRYDI5.id.json | jq '.id'` --silent > ./cli-examples/CRYDI5.resolution.json
+npm run did-jwk-pqc resolve `cat  ./cli-examples/FALCON512.id.json | jq '.id'` --silent > ./cli-examples/FALCON512.resolution.json
+npm run did-jwk-pqc resolve `cat  ./cli-examples/SPHINCS.id.json | jq '.id'` --silent > ./cli-examples/SPHINCS.resolution.json
 ```
 
 ### Dereference DID
@@ -56,6 +62,8 @@ Dereference a DID.
 
 ```
 npm run did-jwk-pqc dereference `cat  ./cli-examples/CRYDI5.id.json | jq '.id'`#0 --silent > ./cli-examples/CRYDI5.dereference.json
+npm run did-jwk-pqc dereference `cat  ./cli-examples/FALCON512.id.json | jq '.id'`#0 --silent > ./cli-examples/FALCON512.dereference.json
+npm run did-jwk-pqc dereference `cat  ./cli-examples/SPHINCS.id.json | jq '.id'`#0 --silent > ./cli-examples/SPHINCS.dereference.json
 ```
 
 ### Sign
@@ -64,6 +72,8 @@ Sign as a DID
 
 ```
 npm run did-jwk-pqc sign ./cli-examples/CRYDI5.jwk.json ./cli-examples/message.json --silent > ./cli-examples/CRYDI5.message.signed.json
+npm run did-jwk-pqc sign ./cli-examples/FALCON512.jwk.json ./cli-examples/message.json --silent > ./cli-examples/FALCON512.message.signed.json
+npm run did-jwk-pqc sign ./cli-examples/SPHINCS.jwk.json ./cli-examples/message.json --silent > ./cli-examples/SPHINCS.message.signed.json
 ```
 
 ### Verify
@@ -72,44 +82,19 @@ Verify with a DID
 
 ```
 npm run did-jwk-pqc verify ./cli-examples/CRYDI5.message.signed.json --silent > ./cli-examples/CRYDI5.message.verified.json
+npm run did-jwk-pqc verify ./cli-examples/FALCON512.message.signed.json --silent > ./cli-examples/FALCON512.message.verified.json
+npm run did-jwk-pqc verify ./cli-examples/SPHINCS.message.signed.json --silent > ./cli-examples/SPHINCS.message.verified.json
 ```
 
 Verify and decode
 
 ```
-npm run did-jwk-pqc verify ./cli-examples/CRYDI5.message.signed.json  -- --decode
+npm run did-jwk-pqc verify ./cli-examples/CRYDI5.message.signed.json --silent -- --decode
+npm run did-jwk-pqc verify ./cli-examples/FALCON512.message.signed.json  --silent  -- --decode
+npm run did-jwk-pqc verify ./cli-examples/SPHINCS.message.signed.json  --silent  -- --decode
 ```
 
 <!--
-
-
-
-
-
-
-
-
-### Encrypt to a DID
-
-Encrypt to a DID
-
-```
-npm run did-jwk encrypt `cat  ./src/cli-examples/id.encrypt.json | jq '.id'` ./src/cli-examples/message.json --silent > ./src/cli-examples/message.encrypted.json
-```
-
-### Encrypt with a Private Key
-
-Decrypt with a private key
-
-```
-npm run did-jwk decrypt ./src/cli-examples/key.privacy.json ./src/cli-examples/message.encrypted.json --silent > ./src/cli-examples/message.decrypted.json
-```
-
-Decrypt and decode as text
-
-```
-npm run did-jwk decrypt ./src/cli-examples/key.privacy.json ./src/cli-examples/message.encrypted.json -- --decode
-```
 
 ```bash
 npm i @or13/did-jwk --save

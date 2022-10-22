@@ -2,9 +2,17 @@ const jose = require('jose');
 
 const base64url = require('base64url');
 const dilithium = require('dilithium-crystals');
+const falcon = require('falcon-crypto');
+const sphincs = require('sphincs');
 
 const dilithium_kty = 'LWE';
 const dilithium_alg = 'CRYDI5';
+
+const falcon_kty = 'NTRU';
+const falcon_alg = 'FALCON512';
+
+const sphincs_kty = `HASH`;
+const sphincs_alg = `SPHINCS+-SHAKE-256s-robust`;
 
 const formatJwk = (jwk) => {
   const {kid, x5u, x5c, x5t, kty, crv, alg, key_ops, x, y, d, ...rest} = jwk;
@@ -29,8 +37,12 @@ const formatJwk = (jwk) => {
 const getSuite = ({kty, alg}) => {
   const keyMapper = {
     [`${dilithium_kty} ${dilithium_alg}`]: dilithium,
+    [`${falcon_kty} ${falcon_alg}`]: falcon,
+    [`${sphincs_kty} ${sphincs_alg}`]: sphincs,
   };
-  return keyMapper[`${kty} ${alg}`];
+  const suite = keyMapper[`${kty} ${alg}`];
+
+  return suite;
 };
 
 const generate = async ({kty, alg}) => {
@@ -42,14 +54,16 @@ const generate = async ({kty, alg}) => {
 const getKtyFromAlg = (alg) => {
   const keyMapper = {
     [dilithium_alg]: dilithium_kty,
+    [falcon_alg]: falcon_kty,
+    [sphincs_alg]: sphincs_kty,
   };
   return keyMapper[alg];
 };
 
 const generateKeyPair = async (alg = dilithium_alg) => {
   const kty = getKtyFromAlg(alg);
-  const rawKeys = await generate({kty, alg});
-  return exportKeyPairJwk(rawKeys);
+  const {publicKey, privateKey} = await generate({kty, alg});
+  return exportKeyPairJwk({publicKey, privateKey, alg});
 };
 
 const importJwk = (jwk) => {
@@ -60,17 +74,18 @@ const importJwk = (jwk) => {
   }
 };
 
-const exportPublicKeyJwk = ({publicKey}) => {
+const exportPublicKeyJwk = ({publicKey, alg}) => {
+  const kty = getKtyFromAlg(alg);
   const publicKeyJwk = {
-    kty: dilithium_kty,
-    alg: dilithium_alg,
+    kty,
+    alg,
     x: base64url.encode(publicKey),
   };
   return publicKeyJwk;
 };
 
-const exportPrivateKeyJwk = ({publicKey, privateKey}) => {
-  const publicKeyJwk = exportPublicKeyJwk({publicKey});
+const exportPrivateKeyJwk = ({publicKey, privateKey, alg}) => {
+  const publicKeyJwk = exportPublicKeyJwk({publicKey, alg});
   const privateKeyJwk = {
     ...publicKeyJwk,
     d: base64url.encode(privateKey),
@@ -78,9 +93,9 @@ const exportPrivateKeyJwk = ({publicKey, privateKey}) => {
   return privateKeyJwk;
 };
 
-const exportKeyPairJwk = async ({publicKey, privateKey}) => {
-  const publicKeyJwk = exportPublicKeyJwk({publicKey});
-  const privateKeyJwk = exportPrivateKeyJwk({publicKey, privateKey});
+const exportKeyPairJwk = async ({publicKey, privateKey, alg}) => {
+  const publicKeyJwk = exportPublicKeyJwk({publicKey, alg});
+  const privateKeyJwk = exportPrivateKeyJwk({publicKey, privateKey, alg});
   // kid not supported error
   // const kid = await jose.calculateJwkThumbprintUri(publicKeyJwk);
   const kid = '#0';

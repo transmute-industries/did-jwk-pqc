@@ -1,0 +1,7 @@
+{
+  "kid": "#0",
+  "kty": "HASH",
+  "alg": "SPHINCS+-SHAKE-256s-robust",
+  "x": "pNBfOYJsXZSmtAjF3Y1-GxogBYhJKbiEICRLnwpORBHWhCfabcMGgAD0BiTFL_KFYRH5z07gv7BDQoqjTE9WhQ",
+  "d": "6UZL0bFmZXOYP9q_AZHaqX2qmMOAwr3k_BNxVQEfw7pMVCJ3rht8Gw5WrJhnNGFTzFweFjknvOaoNUs4da3vg6TQXzmCbF2UprQIxd2NfhsaIAWISSm4hCAkS58KTkQR1oQn2m3DBoAA9AYkxS_yhWER-c9O4L-wQ0KKo0xPVoU"
+}

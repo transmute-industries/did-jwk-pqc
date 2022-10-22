@@ -1,0 +1,11 @@
+{
+  "id": "#0",
+  "type": "JsonWebKey2020",
+  "controller": "did:jwk:eyJraWQiOiIjMCIsImt0eSI6IkhBU0giLCJhbGciOiJTUEhJTkNTKy1TSEFLRS0yNTZzLXJvYnVzdCIsIngiOiJwTkJmT1lKc1haU210QWpGM1kxLUd4b2dCWWhKS2JpRUlDUkxud3BPUkJIV2hDZmFiY01HZ0FEMEJpVEZMX0tGWVJINXowN2d2N0JEUW9xalRFOVdoUSJ9",
+  "publicKeyJwk": {
+    "kid": "#0",
+    "kty": "HASH",
+    "alg": "SPHINCS+-SHAKE-256s-robust",
+    "x": "pNBfOYJsXZSmtAjF3Y1-GxogBYhJKbiEICRLnwpORBHWhCfabcMGgAD0BiTFL_KFYRH5z07gv7BDQoqjTE9WhQ"
+  }
+}
