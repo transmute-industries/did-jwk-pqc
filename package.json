@@ -1,6 +1,6 @@
 {
   "name": "@transmute/did-jwk-pqc",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "./src/index.js",
   "homepage": "https://github.com/transmute-industries/did-jwk-pqc#readme",
   "description": "An implementation of https://github.com/quartzjer/did-jwk",
