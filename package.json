@@ -17,7 +17,7 @@
     "access": "public"
   },
   "scripts": {
-    "did:jwk": "NODE_NO_WARNINGS=1 node ./src/cli.js",
+    "did-jwk-pqc": "NODE_NO_WARNINGS=1 node ./src/cli.js",
     "test": "jest",
     "test-ci": "jest --ci --coverage",
     "lint": "eslint ./src/**/*.js ./tests/**/*.js",
