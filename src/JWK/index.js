@@ -1,4 +1,4 @@
-const base64url = require('base64url');
+const jose = require('jose');
 const dilithium = require('dilithium-crystals');
 const falcon = require('falcon-crypto');
 const sphincs = require('sphincs');
@@ -66,9 +66,9 @@ const generateKeyPair = async (alg = dilithium_alg) => {
 
 const importJwk = (jwk) => {
   if (jwk.d) {
-    return Uint8Array.from(Buffer.from(jwk.d, 'base64'));
+    return jose.base64url.decode(jwk.d);
   } else {
-    return Uint8Array.from(Buffer.from(jwk.x, 'base64'));
+    return jose.base64url.decode(jwk.x);
   }
 };
 
@@ -77,7 +77,7 @@ const exportPublicKeyJwk = ({publicKey, alg}) => {
   const publicKeyJwk = {
     kty,
     alg,
-    x: base64url.encode(publicKey),
+    x: jose.base64url.encode(publicKey),
   };
   return publicKeyJwk;
 };
@@ -86,7 +86,7 @@ const exportPrivateKeyJwk = ({publicKey, privateKey, alg}) => {
   const publicKeyJwk = exportPublicKeyJwk({publicKey, alg});
   const privateKeyJwk = {
     ...publicKeyJwk,
-    d: base64url.encode(privateKey),
+    d: jose.base64url.encode(privateKey),
   };
   return privateKeyJwk;
 };
