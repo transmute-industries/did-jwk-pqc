@@ -25,7 +25,7 @@
     "shove": "git add -A; git commit -m ':rocket:'; git push origin main"
   },
   "bin": {
-    "did-jwk": "./src/cli.js"
+    "did-jwk-pqc": "./src/cli.js"
   },
   "dependencies": {
     "@or13/demojid": "^0.0.1",
