@@ -1,5 +1,13 @@
 # @transmute/did-jwk-pqc
 
+[![CI](https://github.com/transmute-industries/did-jwk-pqc/actions/workflows/ci.yml/badge.svg)](https://github.com/transmute-industries/did-jwk-pqc/actions/workflows/ci.yml)
+![Branches](./badges/coverage-branches.svg)
+![Functions](./badges/coverage-functions.svg)
+![Lines](./badges/coverage-lines.svg)
+![Statements](./badges/coverage-statements.svg)
+![Jest coverage](./badges/coverage-jest%20coverage.svg)
+[![NPM](https://nodei.co/npm/@transmute/did-jwk-pqc.png?mini=true)](https://npmjs.org/package/@transmute/did-jwk-pqc)
+
 <img src="./transmute-banner.png" />
 
 #### [Questions? Contact Transmute](https://transmute.typeform.com/to/RshfIw?typeform-source=did-eqt)
