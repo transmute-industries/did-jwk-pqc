@@ -18,6 +18,27 @@ This project contains experimental and not yet adopted JOSE kty and alg values f
 
 See [DRAFT IETF COSE Post Quantum Signatures](https://datatracker.ietf.org/doc/draft-prorock-cose-post-quantum-signatures/).
 
+## Use
+
+```
+npm i -g @transmute/did-jwk-pqc@latest
+```
+
+### CLI
+
+```
+did-jwk-pqc generate-key CRYDI5
+```
+
+### Library
+
+```js
+const { DID, JWK, JWS } = require('@transmute/did-jwk-pqc')
+const key = await JWK.generateKeyPair('CRYDI5')
+```
+
+[See the tests for additional usage.](./src/sanity.spec.js)
+
 ## Development
 
 ```bash

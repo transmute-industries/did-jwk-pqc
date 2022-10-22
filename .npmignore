@@ -1,0 +1,14 @@
+__tests__
+example
+cli-examples
+openai-generated-image.png
+coverage
+badges
+scripts
+*.spec.js
+.eslintrc.js                          
+.github             
+.prettierrc.yaml                      
+.vscode
+
+jest.config.js 
