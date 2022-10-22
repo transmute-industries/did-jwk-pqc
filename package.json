@@ -29,7 +29,9 @@
   },
   "dependencies": {
     "jose": "^4.9.2",
-    "yargs": "^17.5.1"
+    "yargs": "^17.5.1",
+    "base64url": "^3.0.1",
+    "dilithium-crystals": "^1.0.3"
   },
   "devDependencies": {
     "eslint": "^8.23.0",
