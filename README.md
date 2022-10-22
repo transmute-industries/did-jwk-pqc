@@ -34,26 +34,17 @@ Create a private key
 npm run did-jwk-pqc generate-key CRYDI5 --silent > ./cli-examples/CRYDI5.jwk.json
 ```
 
-<!--
-
-
-### Generate Key For Operation
-
-Create a private key
-
-```
-npm run did-jwk generate-for authenticity --silent > ./src/cli-examples/key.authenticity.json
-npm run did-jwk generate-for privacy --silent > ./src/cli-examples/key.privacy.json
-```
-
 ### Create DID
 
 Create a DID.
 
 ```
-npm run did-jwk create ./src/cli-examples/key.json --silent > ./src/cli-examples/id.json
-npm run did-jwk create ./src/cli-examples/key.privacy.json --silent > ./src/cli-examples/id.encrypt.json
+npm run did-jwk-pqc create ./cli-examples/CRYDI5.jwk.json --silent > ./cli-examples/CRYDI5.id.json
 ```
+
+<!--
+
+
 
 ### Resolve DID
 

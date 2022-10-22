@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const yargs = require('yargs');
 const {hideBin} = require('yargs/helpers');
-const {JWK} = require('./index.js');
+const {DID, JWK} = require('./index.js');
 
 const readJsonFromPath = (argv, argName) => {
   let value;
@@ -34,43 +34,28 @@ yargs(hideBin(process.argv))
           console.log(JSON.stringify(key.privateKeyJwk, null, 2));
         },
     )
-// .command(
-//     'generate-for <purpose>',
-//     'generate a key for a purpose',
-//     () => {},
-//     async (argv) => {
-//       const {purpose} = argv;
-//       const purposeToKeyOp = {
-//         authenticity: 'sign',
-//         privacy: 'encrypt',
-//       };
-//       const op = purposeToKeyOp[purpose];
-//       const key = await method.generateKeyPairForOperation(op);
-//       console.log(JSON.stringify(key.privateKeyJwk, null, 2));
-//     },
-// )
-// .command(
-//     'create <jwk>',
-//     'create a decentralized identifier',
-//     () => {},
-//     async (argv) => {
-//       let jwk;
-//       if (argv.jwk) {
-//         try {
-//           const file = fs
-//               .readFileSync(path.resolve(process.cwd(), argv.jwk))
-//               .toString();
+    .command(
+        'create <jwk>',
+        'create a decentralized identifier',
+        () => {},
+        async (argv) => {
+          let jwk;
+          if (argv.jwk) {
+            try {
+              const file = fs
+                  .readFileSync(path.resolve(process.cwd(), argv.jwk))
+                  .toString();
 
-//           jwk = JSON.parse(file);
-//         } catch (e) {
-//           console.error('Cannot base jwk from: ' + argv.jwk);
-//           process.exit(1);
-//         }
-//       }
-//       const id = method.toDid(jwk);
-//       console.log(JSON.stringify({id}, null, 2));
-//     },
-// )
+              jwk = JSON.parse(file);
+            } catch (e) {
+              console.error('Cannot base jwk from: ' + argv.jwk);
+              process.exit(1);
+            }
+          }
+          const id = DID.toDid(jwk);
+          console.log(JSON.stringify({id}, null, 2));
+        },
+    )
 // .command(
 //     'resolve <did>',
 //     'resolve a decentralized identifier',
