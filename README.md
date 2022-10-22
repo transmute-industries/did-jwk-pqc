@@ -14,6 +14,10 @@
 
 #### 🚧 Warning Experimental 🔥
 
+This project contains experimental and not yet adopted JOSE kty and alg values for post quantum key and signature schemes.
+
+See [DRAFT IETF COSE Post Quantum Signatures](https://datatracker.ietf.org/doc/draft-prorock-cose-post-quantum-signatures/).
+
 ## Development
 
 ```bash
