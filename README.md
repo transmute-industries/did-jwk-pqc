@@ -74,6 +74,12 @@ Verify with a DID
 npm run did-jwk-pqc verify ./cli-examples/CRYDI5.message.signed.json --silent > ./cli-examples/CRYDI5.message.verified.json
 ```
 
+Verify and decode
+
+```
+npm run did-jwk-pqc verify ./cli-examples/CRYDI5.message.signed.json  -- --decode
+```
+
 <!--
 
 
@@ -81,11 +87,7 @@ npm run did-jwk-pqc verify ./cli-examples/CRYDI5.message.signed.json --silent > 
 
 
 
-Verify and decode
 
-```
-npm run did-jwk verify ./src/cli-examples/message.signed.json  -- --decode
-```
 
 ### Encrypt to a DID
 

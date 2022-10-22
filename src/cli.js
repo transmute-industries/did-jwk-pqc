@@ -83,55 +83,24 @@ yargs(hideBin(process.argv))
         async (argv) => {
           const jwk = readJsonFromPath(argv, 'jwk');
           const msg = readJsonFromPath(argv, 'msg');
-          const message = new TextEncoder().encode(JSON.stringify(msg));
-          const jws = await DID.signAsDid(message, jwk);
+
+          const jws = await DID.signAsDid(msg, jwk);
           console.log(JSON.stringify({jws}, null, 2));
         },
     )
-// .command(
-//     'verify <msg>',
-//     'verify a message signed by a decentralized identifier',
-//     () => {},
-//     async (argv) => {
-//       const {jws} = readJsonFromPath(argv, 'msg');
-//       const verified = await method.verifyFromDid(jws);
-
-//       if (argv.decode) {
-//         console.log(new TextDecoder().decode(verified.payload));
-//       } else {
-//         console.log(JSON.stringify({verified}, null, 2));
-//       }
-//     },
-// )
-// .command(
-//     'encrypt <did> <msg>',
-//     'encrypt a message to a decentralized identifier',
-//     () => {},
-//     async (argv) => {
-//       const did = argv.did;
-//       const msg = readJsonFromPath(argv, 'msg');
-//       const message = new TextEncoder().encode(JSON.stringify(msg));
-
-//       const jwe = await method.encryptToDid(message, did);
-
-//       console.log(JSON.stringify({jwe}, null, 2));
-//     },
-// )
-// .command(
-//     'decrypt <jwk> <msg>',
-//     'encrypt a message to a decentralized identifier',
-//     () => {},
-//     async (argv) => {
-//       const jwk = readJsonFromPath(argv, 'jwk');
-//       const {jwe} = readJsonFromPath(argv, 'msg');
-//       const decrypted = await method.decryptWithKey(jwe, jwk);
-
-//       if (argv.decode) {
-//         console.log(new TextDecoder().decode(decrypted.plaintext));
-//       } else {
-//         console.log(JSON.stringify({decrypted}, null, 2));
-//       }
-//     },
-// )
+    .command(
+        'verify <msg>',
+        'verify a message signed by a decentralized identifier',
+        () => {},
+        async (argv) => {
+          const {jws} = readJsonFromPath(argv, 'msg');
+          const verified = await DID.verifyFromDid(jws);
+          if (argv.decode) {
+            console.log(new TextDecoder().decode(verified.payload));
+          } else {
+            console.log(JSON.stringify({verified}, null, 2));
+          }
+        },
+    )
     .demandCommand(1)
     .parse();

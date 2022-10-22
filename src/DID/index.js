@@ -111,6 +111,13 @@ const signAsDid = (payload, privateKeyJwk, header = {}) => {
   });
 };
 
+const verifyFromDid = async (jws) => {
+  const {iss, kid} = jose.decodeProtectedHeader(jws);
+  const {publicKeyJwk} = dereference(iss + kid);
+  const {payload, protectedHeader} = await JWS.verify({jws, publicKeyJwk});
+  return {payload, protectedHeader};
+};
+
 const operations = {
   create: (jwk) => {
     return toDid(jwk);
@@ -119,4 +126,4 @@ const operations = {
   dereference,
 };
 
-module.exports = {operations, toDid, signAsDid};
+module.exports = {operations, toDid, signAsDid, signAsDid, verifyFromDid};
