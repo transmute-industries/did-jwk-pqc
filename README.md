@@ -14,52 +14,6 @@
 
 #### 🚧 Warning Experimental 🔥
 
-Copying base from https://github.com/OR13/did-jwk
-
-<!--
-```bash
-npm i @or13/did-jwk --save
-
-# install cli globally
-npm i -g @or13/did-jwk
-```
-
-## Use
-
-### CLI
-
-### Generate Key
-
-```
-did-jwk generate-key EdDSA
-```
-
-### Generate For Purpose
-
-```
-did-jwk generate-for authenticity
-did-jwk generate-for privacy
-```
-
-### Sign & Verify
-
-```
-did-jwk generate-for authenticity > k0.json
-echo '{"message": "hello"}' > m0.json
-did-jwk sign ./k0.json ./m0.json > m0.signed.json
-did-jwk verify ./m0.signed.json --decode
-```
-
-### Encrypt & Decrypt
-
-```
-did-jwk generate-for privacy > k1.json
-echo '{"message": "hello"}' > m0.json
-did-jwk create ./k1.json > recipient_id.json
-did-jwk encrypt `cat  ./recipient_id.json | jq '.id'` ./m0.json > m0.encrypted.json
-did-jwk decrypt ./k1.json ./m0.encrypted.json  --decode
-```
-
 ## Development
 
 ```bash
@@ -77,8 +31,11 @@ npm i -g .
 Create a private key
 
 ```
-npm run did-jwk generate-key EdDSA --silent > ./src/cli-examples/key.json
+npm run did-jwk-pqc generate-key CRYDI5 --silent > ./cli-examples/CRYDI5.jwk.json
 ```
+
+<!--
+
 
 ### Generate Key For Operation
 
@@ -156,4 +113,49 @@ Decrypt and decode as text
 
 ```
 npm run did-jwk decrypt ./src/cli-examples/key.privacy.json ./src/cli-examples/message.encrypted.json -- --decode
-``` -->
+```
+
+```bash
+npm i @or13/did-jwk --save
+
+# install cli globally
+npm i -g @or13/did-jwk
+```
+
+## Use
+
+### CLI
+
+### Generate Key
+
+```
+did-jwk generate-key EdDSA
+```
+
+### Generate For Purpose
+
+```
+did-jwk generate-for authenticity
+did-jwk generate-for privacy
+```
+
+### Sign & Verify
+
+```
+did-jwk generate-for authenticity > k0.json
+echo '{"message": "hello"}' > m0.json
+did-jwk sign ./k0.json ./m0.json > m0.signed.json
+did-jwk verify ./m0.signed.json --decode
+```
+
+### Encrypt & Decrypt
+
+```
+did-jwk generate-for privacy > k1.json
+echo '{"message": "hello"}' > m0.json
+did-jwk create ./k1.json > recipient_id.json
+did-jwk encrypt `cat  ./recipient_id.json | jq '.id'` ./m0.json > m0.encrypted.json
+did-jwk decrypt ./k1.json ./m0.encrypted.json  --decode
+```
+
+-->
